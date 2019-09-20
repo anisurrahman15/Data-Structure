@@ -1,0 +1,76 @@
+/*Anisur Rahman
+Dept of csee DIU
+Project Name: Store and See Student Information USing structure*/
+#include <stdio.h>
+#include<string.>
+struct student
+{
+    char name[50];
+    int roll;
+    double cgpa;
+} s[100000];
+int main()
+{
+    int i,n,t,x=0,y,total=0,z;
+    char c;
+    do
+    {
+
+
+        printf("\t\t1.Enter Student Information:::\n\t\t2.Search And See Student Information:::\n\t\tYour Choice :");
+        scanf("%d",&n);
+
+        if (n==1)
+        {
+
+            printf("\tHow Many students information want to Store(max=1000): ");
+            scanf("%d",&x);
+            z=x;
+            x=x+total;
+            for ( int i=total; i<x; i++)
+            {
+                printf("\tEnter Roll :");
+                scanf("%d",&t);
+                s[i].roll = t;
+                printf("\t\nFor roll number: %d,\n",s[i].roll);
+                printf("\tEnter name: ");
+              scanf("%s",s[i].name);
+
+                printf("\tEnter cgpa: ");
+                scanf("%lf",&s[i].cgpa);
+                printf("\n");
+            }
+              total+=z;
+
+        }
+        else if (n==2)
+        {
+
+
+            printf("Displaying Information:\n\n");
+            printf("Enter Student Roll: \n");
+            scanf("%d",&y);
+            for( i= 0; i<total; i++)
+            {
+
+                if (s[i].roll==y)
+                   {
+                       printf("\nRoll number: %d\n",s[i].roll);
+                printf("Name: ");
+                puts(s[i].name);
+                printf("cgpa: %.2lf",s[i].cgpa);
+                printf("\n");
+                }
+
+
+            }
+        }
+        printf("\n\n\t\t DO U WANT TO DO ANY MORE CONDITION\n\n'y'=FOR 'YES'\n'N'=FOR 'NO'\n******************:");
+        fflush(stdin);
+        scanf("%c",&c);
+    }
+    while(c=='y' || c=='Y');
+    printf("\n ...EXIT.\n\n\n\n\n");
+
+    return 0;
+}
