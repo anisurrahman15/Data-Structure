@@ -1,0 +1,175 @@
+/*Anisur Rahman
+Batch: 52
+Dept Of cse DIU */
+#include<bits/stdc++.h>
+typedef struct mylist
+{
+
+    int data;
+    struct mylist *next;
+
+} node;
+
+
+
+void insert_last(node *temp, int data)
+{
+    while(temp->next != NULL)
+    {
+        temp = temp->next;
+    }
+    temp->next = (node*) malloc(sizeof(node));
+    temp->next->data = data;
+    temp->next->next = NULL;
+}
+
+
+void insertFirst(node *temp, int data)
+{
+    node* s = temp->next;
+    temp->next = (node*) malloc(sizeof(node));
+    temp->next->data = data;
+    temp->next->next = s;
+}
+
+
+
+void display(node *temp)
+{
+    while(temp->next != NULL)
+    {
+        printf("%d\n", temp->next->data);
+        temp = temp->next;
+    }
+}
+
+
+
+void search(node *temp, int data)
+{
+    int count = 0;
+    while(temp->next != NULL)
+    {
+        if(temp->next->data == data)
+        {
+            count++;
+        }
+        temp = temp->next;
+    }
+    printf("Total %d results found\n", count);
+}
+
+
+
+
+void deleteNode(node *temp, int data)
+{
+    while(temp->next != NULL)
+    {
+        if(temp->next->data == data)
+        {
+            temp->next = temp->next->next;
+            break;
+        }
+        temp = temp->next;
+
+    }
+}
+
+
+
+void deleteFirst(node *temp)
+{
+    temp->next = temp->next->next;
+
+}
+
+
+void deleteLast(node *temp)
+{
+    while(temp->next != NULL)
+    {
+        if(temp->next->next == NULL)
+        {
+            temp->next = NULL;
+            break;
+        }
+        temp = temp->next;
+    }
+
+
+}
+
+
+void insertAfter(node *temp, int search, int data)
+{
+    while(temp->next != NULL)
+    {
+        if(temp->next->data == search)
+        {
+            node *tempstore = temp->next->next;
+            temp->next->next = (node*) malloc(sizeof(node));
+            temp->next->next->data = data;
+            temp->next->next->next = tempstore;
+            break;
+        }
+        temp = temp->next;
+    }
+}
+
+
+
+
+
+void countNode(node *temp)
+{
+    int count = 0;
+    while(temp->next != NULL)
+    {
+        count++;
+        temp = temp->next;
+    }
+    printf("Total %d nodes found.\n", count);
+}
+
+
+
+
+int main()
+{
+    node *first = (node*) malloc(sizeof(node));
+    first->next = NULL;
+
+
+    printf("======Inserting data At_last=========\n");
+    insert_last(first, 4);
+    insert_last(first, 5);
+    insert_last(first, 7);
+    insert_last(first, 8);
+
+    display(first);
+
+
+    printf("======Inserting data at the first=========\n");
+    insertFirst(first, 3);
+    display(first);
+    printf("======Inserting data After Nth Data=========\n");
+    insertAfter(first,5,6);
+     display(first);
+
+    printf("======Deleting Nth Data=========\n");
+      deleteNode(first,8);
+ display(first);
+     printf("======Deleting first  Data=========\n");
+    deleteLast(first);
+
+    display(first);
+
+
+    printf("======Deleting First Data=========\n");
+    deleteFirst(first);
+
+    display(first);
+
+
+}
