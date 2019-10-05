@@ -1,0 +1,14 @@
+#include<stdio.h>
+int main()
+{
+    int a,b,*c,*d,temp;
+    scanf("%d %d",&a,&b);
+    printf("AFTER :\nA=%d\nB=%d\n",a,b);
+    c=&a;
+    d=&b;
+    temp=*d;
+    *d=*c;
+    *c=temp;
+    printf("NOW:\nA=%d\nB=%d\n",a,b);
+    return 0;
+}
