@@ -1,0 +1,85 @@
+/*Anisur Rahman
+Batch: 52
+Dept Of cse DIU */
+#include<bits/stdc++.h>
+typedef struct mylist
+{
+
+  int rollnumber;
+    char Name[256];
+
+    char email[200];
+    char Address[256];
+    int Telephone;
+        struct mylist *next;
+
+} node;
+
+
+
+void insert_last(node * temp)
+{int roll;
+char Na[256];
+char Add[256];
+char em[100];
+int Tele;
+printf("Please enter the name of student:");
+            scanf("%s",Na);
+          printf("\n Please Enter id number of Student:");
+            scanf("%d",&roll);
+            printf("Please enter the email of student:");
+scanf("%s",em);
+
+           printf("\n Please Enter Address of Student:");
+            scanf("%s",Add);
+
+            printf("\n Please Enter Telephone of Student:");
+            scanf("%d",&Tele);
+
+    while(temp->next != NULL)
+    {
+        temp = temp->next;
+    }
+    temp->next = (node*) malloc(sizeof(node));
+    temp->next->rollnumber = roll;
+    strcpy(temp->next->Name,Na);
+    strcpy(temp->next->Address,Add);
+  strcpy(temp->next->email,em);
+    temp->next->Telephone = Tele;
+    temp->next->next = NULL;
+}
+
+void display(node *temp)
+{
+    while(temp->next != NULL)
+    {
+   printf("Name:-%s \tEmail :-%s\n Address:-%s \t id Number:-%d \t Telephone:-%d \n\n", temp->next->Name,temp->next->email,temp->next->Address,temp->next->rollnumber,temp->next->Telephone);
+      temp = temp->next;
+    }
+    printf("\n");
+}
+
+
+
+int main()
+{
+
+    node *head = (node*) malloc(sizeof(node));
+    head->next = NULL;
+    insert_last(head);
+    display(head);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
