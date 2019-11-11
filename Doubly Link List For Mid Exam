@@ -1,0 +1,133 @@
+/* anisur rahman
+dept of cse diu */
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node* next;
+    struct node* prev;
+};
+
+struct node* head;
+
+
+struct node* get_newnode(int x)
+{
+    struct node* newNode
+        = (struct node*)malloc(sizeof(struct node));
+    newNode->data = x;
+    newNode->prev = NULL;
+    newNode->next = NULL;
+    return newNode;
+}
+void insert_head(int x)
+{
+    struct node * new_node=get_newnode(x);
+    if (head==NULL)
+    {
+        head=new_node;
+        return ;
+    }
+
+    head->prev=new_node;
+    new_node->next=head;
+    head=new_node;
+
+}
+void ReversePrint() {
+	struct node* temp = head;
+	if(temp == NULL) return;
+	while(temp->next != NULL) {
+		temp = temp->next;
+	}
+	printf("Reverse: ");
+	while(temp != NULL) {
+		printf("%d ",temp->data);
+		temp = temp->prev;
+	}
+	printf("\n");
+}
+
+void insert_last(int x)
+{
+    struct node * temp=head;
+    struct node * new_node=get_newnode(x);
+    if (head==NULL)
+    {
+        head=new_node;
+        return ;
+    }
+
+    while(temp->next!=NULL)
+        temp=temp->next;
+
+    temp->next=new_node;
+    new_node->prev=temp;
+}
+void insert_middle(int x,int data)
+{
+    struct node * temp=head;
+    struct node * new_node=get_newnode(data);
+    while(temp!=NULL)
+    {
+        if (temp->data==x)
+        {
+            struct node * temp2=temp->next;
+            temp->next=new_node;
+            new_node->prev=temp;
+            new_node->next=temp2;
+            temp2->prev=new_node;
+            return ;
+        }
+    }
+}
+
+
+void delate_head()
+{
+    struct node * temp=head;
+    head= temp->next;
+}
+ void delate_last()
+ {
+     struct node * temp=head;
+     while(temp->next->next!=NULL)
+     {
+         temp=temp->next;
+
+     }
+     temp->next=NULL;
+ }
+
+
+void display_foroward()
+{
+    struct node * temp=head;
+printf("Forward: ");
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    printf("\n");
+}
+int main ()
+{
+    head=NULL;
+    insert_head(3);
+    insert_head(2);
+    insert_last(4);
+    insert_last(5);
+   display_foroward();
+ReversePrint();
+    insert_middle(2,7);
+    display_foroward();
+    delate_head();
+        display_foroward();
+        delate_last();
+                display_foroward();
+
+
+}
