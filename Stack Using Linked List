@@ -1,0 +1,62 @@
+/* anisur rahman
+ 52 batch 
+ */
+#include<bits/stdc++.h>
+using namespace std;
+typedef struct mylist
+{
+    int data;
+    struct mylist * next;
+
+}node;
+node * head=NULL;
+void push(int x)
+{
+ node *new_node,* temp=head;
+ new_node=(node*)malloc(sizeof(node));
+ new_node->data=x;
+
+    if (head==NULL)
+    {
+      new_node->next=NULL;
+    }
+    else
+        new_node->next=head;
+    head=new_node;
+
+
+
+}
+void pop()
+{
+    node * temp=head;
+    temp=head->next;
+    head=temp;
+
+}
+void display()
+{
+
+      node *temp = head;
+      while(temp->next != NULL){
+	 printf("%d--->",temp->data);
+	 temp = temp -> next;
+      }
+      printf("%d--->NULL\n",temp->data);
+
+}
+int main ()
+{
+
+push(10);
+
+push(12);
+push(13);
+
+push(14);
+display();
+pop();
+display();
+
+return 0;
+}
