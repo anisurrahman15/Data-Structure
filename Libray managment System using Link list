@@ -167,7 +167,12 @@ void search(struct node* head)
     {
         if(strcmp(ch,head->ISBN)==0)
         {
-            head=head->ptr;
+
+            printf("\n\tThe name of the BOOK is %s\n",head->name);
+            printf("\n\tThe AUTHOR of the BOOK is %s\n",head->author);
+
+            printf("\n\tThe Publisher of the BOOK is %s\n",head->publisher);
+
             return ;
 
         }
@@ -180,4 +185,3 @@ void search(struct node* head)
     }
 }
 //anisur rahman
-
