@@ -1,0 +1,183 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+struct node* createnode(struct node*);
+void display(struct node*);
+void search(struct node*);
+void delate(struct node*);
+
+struct node
+{
+    char name[100],ISBN[100],author[100],publisher[100];
+    int year;
+    struct node* ptr;
+};
+
+int main()
+{
+    struct node* head;
+    int b,i;
+
+    head=NULL;
+
+    while(1)
+    {
+
+        printf("\n\nMenu: Select your option\n\n");
+        printf("(1) Add  book to the list\n");
+        printf("(2) List all books by an name and Author.\n");
+//		cout << "(3) Delete a book based on ISBN\n";
+        printf("(3) Search for a book by ISBN.\n");
+
+        printf("(4) Delete a book based on ISBN\n");
+        printf("(5) Quit.\n\n");
+        printf("Enter your choice ---> ");
+        scanf("%d",&b);
+
+        switch(b)
+        {
+        case (1):
+            printf("\n\thow many  Book you would like to enter\n");
+            scanf("%d",&i);
+            while(i>0)
+            {
+                head=createnode(head);
+                i--;
+            }
+            break;
+
+        case (2):
+            display(head);
+            break;
+
+        case (3):
+            search(head);
+            break;
+        case(4):
+            delate(head);
+            break;
+        case (5):
+            return 0;
+        }
+    }
+}
+
+
+void display(struct node* head)
+{
+    if(head==NULL)
+    {
+        printf("\n\tThe BOOK is Not yet to be displayed \n");
+    }
+
+    else
+    {
+        while(head!=NULL)
+        {
+
+
+
+
+
+
+
+            printf("\n\tThe name of the BOOK is %s\n",head->name);
+            printf("\n\tThe AUTHOR of the BOOK is %s\n",head->author);
+
+            printf("\n\tThe Publisher of the BOOK is %s\n",head->publisher);
+            printf("\n\tThe ISBN of the BOOK is %s\n",head->ISBN);
+
+            printf("\n\tThe year of the BOOK is %d\n",head->year);
+
+            head=head->ptr;
+
+        }
+
+    }
+}
+
+struct node* createnode(struct node* head)
+{
+
+    struct node* newnode;
+    newnode=(struct node*)malloc(sizeof (struct node));
+
+    printf("\n\tEnter the Book name \n");
+    scanf("%s",newnode->name);
+    printf("\n\tEnter the BOOKS's Author \n");
+    scanf("%s",newnode->author);
+    printf("\n\tEnter the Publisher of the BOOK \n");
+    scanf("%s",&newnode->publisher);
+    printf("\n\tEnter the ISBN of the BOOK\n");
+    scanf("%s",&newnode->ISBN);
+    printf("\n\tEnter the year of the BOOK\n");
+    scanf("%d",&newnode->year);
+
+    if(newnode == NULL)
+    {
+        printf("\n \tEnter the newnode \n");
+        newnode->ptr=NULL;
+    }
+
+    else
+    {
+        newnode->ptr=head;
+
+    }
+    return newnode;
+}
+
+
+void delate( struct node* head)
+{ char ch[100];
+
+    printf("\n\tEnter the ISBN no\n");
+
+    scanf("%s",ch);
+
+     while(head->ptr != NULL)
+    {
+        if(strcmp(ch,head->ISBN)==0)
+        {
+            head->ptr = head->ptr->ptr;
+            return ;
+        }
+       else
+        {
+            printf("\n\tThe ISBN is not matched\n");
+        }
+        head=head->ptr;
+
+    }
+
+}
+
+
+void search(struct node* head)
+{
+    char ch[100];
+
+    printf("\n\tEnter the ISBN no\n");
+
+    scanf("%s",ch);
+
+
+    while(head!=NULL)
+    {
+        if(strcmp(ch,head->ISBN)==0)
+        {
+            head=head->ptr;
+            return ;
+
+        }
+
+        else
+        {
+            printf("\n\tThe ISBN is not matched\n");
+        }
+        head=head->ptr;
+    }
+}
+//anisur rahman
+
