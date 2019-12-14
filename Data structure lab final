@@ -1,0 +1,179 @@
+/*anisur rahman
+Dept Of diu 52 Batch */
+#include<bits/stdc++.h>
+using namespace std;
+struct node
+{
+    int data;
+    struct node * next;
+};
+struct node * head;
+void insert_first(int data)
+{
+    struct node * temp=(struct node *)malloc(sizeof(struct node ));
+    temp->data=data;
+    temp->next=head;
+    head=temp;
+}
+void last_insert(int data)
+{
+    struct node * temp,*new_node=(struct node *)malloc(sizeof(struct node ));
+    temp=head;
+    new_node->data=data;
+    new_node->next=NULL;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    temp->next=new_node;
+
+
+
+
+}
+void insert_after_nth(int data,int x)
+{
+    struct node * temp=head,*temp2,*new_node=(struct node *)malloc(sizeof(struct node));
+    new_node->data=data;
+    while(temp!=NULL)
+    {
+        if (temp->data==x)
+        {
+            temp2=temp->next;
+            temp->next=new_node;
+            new_node->next=temp2;
+            return;
+        }
+        temp=temp->next;
+    }
+}
+//void insert_after_nth(int data,int x)
+//{
+//
+//    struct node * temp=head,* temp2,* new_node=(struct node *)malloc(sizeof(struct node));
+//    new_node->data=x;
+//
+//    while(temp!=NULL)
+//    {
+//        if (temp->data==data)
+//        {
+//            temp2=temp->next;
+//            temp->next=new_node;
+//            new_node->next=temp2;
+//            return ;
+//
+//
+//        }
+//        temp=temp->next;
+//    }
+//}
+//
+
+
+
+void display()
+{
+    struct node * temp=head;
+    while(temp !=NULL)
+    {
+        cout<<temp->data<<endl;
+        temp=temp->next;
+    }
+
+
+}
+void  head_delate()
+{
+    head=head->next;
+
+}
+void last_node_delate()
+{
+    struct node * temp=head;
+    while(temp->next->next!=NULL)
+    {
+        temp=temp->next;
+
+    }
+    temp->next=NULL;
+}
+void search_datanode_delate(int data)
+{
+    struct node * temp;
+    temp->next=NULL;
+    temp->next=head;
+    while(temp->next!=NULL)
+    {
+
+
+        if(temp->next->data==data)
+        {
+            temp->next=temp->next->next;
+            return ;
+        }
+        temp=temp->next;
+    }
+}
+void update(int data,int x)
+{
+   struct node * temp=head;
+   while(temp!=NULL)
+   {
+       if (temp->data==data)
+       {
+           temp->data=x;
+           return ;
+       }
+       temp=temp->next;
+
+
+   }
+
+
+
+
+
+
+}
+
+int main ()
+{
+    head= NULL;
+    insert_first(2);
+    insert_first(1);
+    display();
+    cout<<"after last Insert"<<endl;
+    last_insert(3);
+    last_insert(4);
+    last_insert(5);
+    last_insert(6);
+
+    display();
+    cout<<"After Middle Insert"<<endl;
+    insert_after_nth(9,3);
+    display();
+    cout<<"\t  Now Delate Function"<<endl;
+    head_delate();
+    cout<<"after Delating Head"<<endl;
+    display();
+    last_node_delate();
+    cout<<"after Delating laast node"<<endl;
+    display();
+    search_datanode_delate(9);
+
+    cout<<" Searching Node Delate"<<endl;
+    display();
+
+    cout<<" After Updating Any Node"<<endl;
+update(4,10);
+display();
+
+
+
+cout<<"\n\n\t\t !!!!Keep Clam And  Code On !!!"<<endl;
+
+
+
+
+    return 0;
+}
